@@ -1,4 +1,3 @@
-import { ZodError } from "zod";
 import Catergoy from "../models/catergory";
 import {
   getFormattedCategories,
@@ -10,7 +9,7 @@ import {
   validateCategoryId,
   validateRoot,
 } from "../utils/validators";
-import { formatZodError } from "../utils/errorFormatter";
+import { handleError } from "../utils/errorFormatter";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 type MongoQueryFilter = {
@@ -54,13 +53,8 @@ export const createCategory = async (req: Request, res: Response) => {
     res.json({ message: "Category added succcessfully", data: savedCategory });
   } catch (err) {
     console.log(err);
-    if (err instanceof ZodError) {
-      res.status(400).json({ error: formatZodError(err) });
-    } else if (err instanceof Error) {
-      res.status(400).json({ error: `${err.message}` });
-    } else {
-      res.status(500).json({ error: "something went wrong", err: err });
-    }
+    const formattedError = handleError(err);
+    res.status(formattedError.statusCode).json({ error: formattedError.error });
   }
 };
 
@@ -75,13 +69,8 @@ export const getCategoryById = async (req: Request, res: Response) => {
     res.json({ message: "Category fetched succcessfully", data: categoryData });
   } catch (err) {
     console.log(err);
-    if (err instanceof ZodError) {
-      res.status(400).json({ error: formatZodError(err) });
-    } else if (err instanceof Error) {
-      res.status(400).json({ error: `${err.message}` });
-    } else {
-      res.status(500).json({ error: "something went wrong", err: err });
-    }
+    const formattedError = handleError(err);
+    res.status(formattedError.statusCode).json({ error: formattedError.error });
   }
 };
 
@@ -137,13 +126,8 @@ export const getCategoryChildren = async (req: Request, res: Response) => {
     res.json({ message: "", data: data });
   } catch (err) {
     console.log(err);
-    if (err instanceof ZodError) {
-      res.status(400).json({ error: formatZodError(err) });
-    } else if (err instanceof Error) {
-      res.status(400).json({ error: `${err.message}` });
-    } else {
-      res.status(500).json({ error: "something went wrong", err: err });
-    }
+    const formattedError = handleError(err);
+    res.status(formattedError.statusCode).json({ error: formattedError.error });
   }
 };
 
@@ -163,14 +147,10 @@ export const updateCategory = async (req: Request, res: Response) => {
       data: UpdateCategoryData,
     });
   } catch (err) {
+    
     console.log(err);
-    if (err instanceof ZodError) {
-      res.status(400).json({ error: formatZodError(err) });
-    } else if (err instanceof Error) {
-      res.status(400).json({ error: `${err.message}` });
-    } else {
-      res.status(500).json({ error: "something went wrong", err: err });
-    }
+    const formattedError = handleError(err);
+    res.status(formattedError.statusCode).json({ error: formattedError.error });
   }
 };
 
@@ -220,12 +200,7 @@ export const deleteCategory = async (req: Request, res: Response) => {
     res.json({ message: "Category deleted Successfully" });
   } catch (err) {
     console.log(err);
-    if (err instanceof ZodError) {
-      res.status(400).json({ error: formatZodError(err) });
-    } else if (err instanceof Error) {
-      res.status(400).json({ error: `${err.message}` });
-    } else {
-      res.status(500).json({ error: "something went wrong", err: err });
-    }
+    const formattedError = handleError(err);
+    res.status(formattedError.statusCode).json({ error: formattedError.error });
   }
 };

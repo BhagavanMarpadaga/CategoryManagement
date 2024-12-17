@@ -13,7 +13,26 @@ export const formatZodError = (error: ZodError) => {
   if (issues.length) {
     const currentIssue = issues[0];
     return formatZodIssue(currentIssue);
-  }else{
-    return "something went wrong"
+  } else {
+    return "something went wrong";
+  }
+};
+
+export const handleError = (err:unknown) => {
+  if (err instanceof ZodError) {
+    return {
+      statusCode: 400,
+      error: formatZodError(err),
+    };
+  } else if (err instanceof Error) {
+    return {
+      statusCode: 400,
+      error: err.message,
+    };
+  } else {
+    return {
+      statusCode: 500,
+      error: `something went wrong : ${err}`,
+    };
   }
 };
