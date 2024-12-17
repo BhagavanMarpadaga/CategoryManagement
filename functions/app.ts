@@ -28,7 +28,4 @@ app.use(cors(corsOptions))
 app.use("/.netlify/functions/app", apiRouter);
 // const handler = serverless(app);
 module.exports.handler = serverless(app);
-// async (event: object, context: object) => {
-//     const result = await handler(event, context);
-//     return result;
-// }
+
