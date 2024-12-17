@@ -18,7 +18,7 @@ Replace `{{Domain}}` with the actual base URL.
 
 | Method | Endpoint                      | Request Body                                                                                     |
 |--------|--------------------------------|--------------------------------------------------------------------------------------------------|
-| POST   | `{{Domain}}/api/v1/category`   | ```json<br>{<br>  "categoryName": "Foot Wear",<br>  "categoryParentId": "675f21b86978ce3117ae15f1"<br>}``` |
+| POST   | `{{Domain}}/api/v1/category`   | ```{ "categoryName": "Foot Wear""categoryParentId": "675f21b86978ce3117ae15f1"}``` |
 
 ---
 
@@ -26,7 +26,7 @@ Replace `{{Domain}}` with the actual base URL.
 
 | Method | Endpoint                      | Request Body                                                                                     |
 |--------|--------------------------------|--------------------------------------------------------------------------------------------------|
-| POST   | `{{Domain}}/api/v1/category`   | ```json<br>{<br>  "categoryName": "Foot Wear",<br>  "isRoot": true<br>}```                       |
+| POST   | `{{Domain}}/api/v1/category`   | ```json<"">{<"">  "categoryName": "Foot Wear",  "isRoot": true}```                       |
 
 ---
 
@@ -50,7 +50,7 @@ Replace `{{Domain}}` with the actual base URL.
 
 | Method | Endpoint                      | Request Body                                                                                     |
 |--------|--------------------------------|--------------------------------------------------------------------------------------------------|
-| PATCH  | `{{Domain}}/api/v1/category`   | ```json<br>{<br>  "categoryId": "67601d950b90a48abcccf738",<br>  "categoryName": "Men"<br>}```    |
+| PATCH  | `{{Domain}}/api/v1/category`   | ```{  "categoryId": "67601d950b90a48abcccf738",  "categoryName": "Men"}```    |
 
 ---
 
