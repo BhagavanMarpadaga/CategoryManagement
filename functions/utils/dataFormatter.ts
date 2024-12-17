@@ -83,9 +83,5 @@ export const getFormattedCategoryReqBody=(data:CategoryCreateBody)=>{
     }
 }
 
-// export const getFormattedUpdateReqBody=(data:CategoryUpdateBody)=>{
-//     return {
-//         name:data.categoryName
-//     }
-// }
+
 

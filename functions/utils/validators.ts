@@ -1,6 +1,17 @@
 import { z } from "zod";
 
 // Zod schema for validating category data
+
+
+export const validateRoot = z
+.object({
+  categoryName: z
+    .string()
+    .min(1, "Name is required")
+    .max(100, "Name is too long"),
+    isRoot:z.boolean().default(true)
+})
+.strict();
 export const validateCategory = z
   .object({
     categoryName: z

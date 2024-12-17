@@ -4,6 +4,7 @@ import {
   validateCategory,
   validateCategoryForUpdate,
   validateCategoryId,
+  validateRoot,
 } from "../../../utils/validators";
 import { ZodError } from "zod";
 import { formatZodError } from "../../../utils/errorFormatter";
@@ -22,6 +23,26 @@ const categoryRouter = express.Router();
 
 categoryRouter.post("/", async (req, res) => {
   try {
+    if (req.body.isRoot && (req.body.isRoot || req.body.isRoot==="true") ) {
+      const findRoot = await Catergoy.findOne({ isRoot: true });
+      if (!findRoot) {
+        const {categoryName} = req.body
+        validateRoot.parse(req.body);
+        const createRoot = new Catergoy({
+          name:categoryName,
+          isRoot:true
+        });
+        const createRootRes = await createRoot.save();
+        res.json({
+          message: "Category added succcessfully",
+          data: createRootRes,
+        });
+      }else{
+        throw new Error("You are not allowed to create root")
+      }
+      return;
+    }
+
     validateCategory.parse(req.body);
     const { categoryParentId } = req.body;
     //validate parent exists in db before creating a new category

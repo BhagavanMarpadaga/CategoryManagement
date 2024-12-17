@@ -3,8 +3,7 @@ import { ICategory } from "../types";
 
 const categorySchema = new mongoose.Schema<ICategory>({
     name:{
-        type:String,
-        unique:true
+        type:String
     },
     parent:{
         type:mongoose.Schema.Types.ObjectId,
