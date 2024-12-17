@@ -91,9 +91,11 @@ export const getCategoryChildren = async (req: Request, res: Response) => {
           },
         },
       ]);
-      const descendants = data[0]["descendants"];
-
-      data = getFormattedCategories(descendants);
+      if(data.length!==0){
+        const descendants = data[0]["descendants"];
+        data = getFormattedCategories(descendants);
+      }
+      
     } else {
       const rootId = categoryId as string;
       //verfiy the the category providded is valid or not
@@ -117,10 +119,12 @@ export const getCategoryChildren = async (req: Request, res: Response) => {
           },
         },
       ]);
-      const descendants = data[0]["descendants"];
-      delete data[0]["descendants"];
-      data = [...data, ...descendants];
-      data = getFormattedCategories(data, rootId);
+      if(data.length!==0){
+        const descendants = data[0]["descendants"];
+        delete data[0]["descendants"];
+        data = [...data, ...descendants];
+        data = getFormattedCategories(data, rootId);
+      }
     }
 
     res.json({ message: "", data: data });
