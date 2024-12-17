@@ -26,4 +26,8 @@ app.use(cookieParser());
 //   });
 
 app.use("/.netlify/functions/app", apiRouter);
-module.exports.handler = serverless(app);
+const handler = serverless(app);
+module.exports.handler = async (event: object, context: object) => {
+    const result = await handler(event, context);
+    return result;
+}
