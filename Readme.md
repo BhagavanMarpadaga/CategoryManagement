@@ -66,7 +66,7 @@ Replace `{{Domain}}` with the actual base URL.
 
 | Key       | Value                                     |
 |-----------|------------------------------------------|
-| `Domain`  | `https://thriving-duckanoo-f828f2.netlify.app/.netlify/functions/app` |
+| `Domain`  | `https://categorylambda.netlify.app/.netlify/functions/app` |
 
 ---
 
